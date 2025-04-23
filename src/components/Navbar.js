@@ -4,12 +4,13 @@ import Swal from "sweetalert2";
 
 const Navbar = () => {
   const navigate = useNavigate();
+  const api = process.env.REACT_APP_API_URL;
 
   const handleLogout = async () => {
     const token = sessionStorage.getItem("token");
 
     try {
-      await axios.post("http://localhost:8000/api/logout", null, {
+      await axios.post(`${api}/logout`, null, {
         headers: {
           Authorization: `Bearer ${token}`,
           Accept: "application/json",

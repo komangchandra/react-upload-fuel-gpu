@@ -7,6 +7,7 @@ import Swal from "sweetalert2";
 const Home = () => {
   const [parsedData, setParsedData] = useState([]);
   const [isUploading, setIsUploading] = useState(false);
+  const api = process.env.REACT_APP_API_URL;
 
   const handleFileUpload = (e) => {
     const file = e.target.files[0];
@@ -78,7 +79,7 @@ const Home = () => {
         const chunk = parsedData.slice(i, i + chunkSize);
 
         const requests = chunk.map((payload) =>
-          axios.post("http://localhost:8000/api/transactions", payload, {
+          axios.post(`${api}/transactions`, payload, {
             headers: { "Content-Type": "application/json" },
           })
         );

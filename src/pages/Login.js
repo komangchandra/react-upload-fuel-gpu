@@ -7,15 +7,16 @@ const Login = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const navigate = useNavigate();
+  const api = process.env.REACT_APP_API_URL;
 
   const handleLogin = async (e) => {
     e.preventDefault(); // Mencegah reload halaman
 
     try {
       const response = await axios.post(
-        "http://localhost:8000/api/login",
+        `${api}/login`,
         {
-          email: email,
+          email: `${email}@gmail.com`,
           password: password,
         },
         {
@@ -68,7 +69,7 @@ const Login = () => {
           <input
             type="text"
             className="form-control"
-            placeholder="Email"
+            placeholder="username"
             onChange={(e) => setEmail(e.target.value)}
           />
         </div>
