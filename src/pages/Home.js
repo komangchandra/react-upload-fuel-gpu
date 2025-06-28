@@ -20,19 +20,38 @@ const Home = () => {
         const data = results.data.map((row) => {
           const excelTimestamp = Number(row["Tanggal"]);
           const date = new Date(excelTimestamp);
-          const hours = date.getHours().toString().padStart(2, "0");
-          const minutes = date.getMinutes().toString().padStart(2, "0");
+
+          const formattedDatetime = `${date.getFullYear()}-${(
+            date.getMonth() + 1
+          )
+            .toString()
+            .padStart(2, "0")}-${date
+            .getDate()
+            .toString()
+            .padStart(2, "0")} ${date
+            .getHours()
+            .toString()
+            .padStart(2, "0")}:${date
+            .getMinutes()
+            .toString()
+            .padStart(2, "0")}:${date
+            .getSeconds()
+            .toString()
+            .padStart(2, "0")}`;
 
           return {
-            time: `${hours}:${minutes}`,
+            datetime: formattedDatetime,
             hm: String(row["HM"]),
             vol: String(row["Volume"]),
             initial_flow: String(row["Flow Awal"]),
             final_flow: String(row["Flow Akhir"]),
             driver: String(row["Driver"]),
             location: String(row["Lokasi"]),
-            user_id: parseInt(row["User ID"]),
-            unit_id: parseInt(row["Unit ID"]),
+            username: String(row["Username"]),
+            unit: String(row["Unit"]),
+            no_lambung: String(row["Nomor Lambung"]),
+            owner: String(row[" Owner"]),
+            fuel_truck: String(row[" Fuel Truck"]),
           };
         });
 
@@ -105,7 +124,7 @@ const Home = () => {
       setIsUploading(false);
     }
 
-    window.location.href = "/home";
+    // window.location.href  = "/home";
   };
 
   return (
